@@ -49,7 +49,7 @@
 
     var btnNo = $('#btnNo');
     btnNo.on('click', function() {
-      if(clickCount >= 5){
+      if(clickCount >= 6){
         resp.text("Muhahaha... The NO button has gone.");
 
         try{
@@ -119,7 +119,7 @@
   var oldText2 = "";
   var defaultHeart = brokenHeart;
   btnNo.on('mouseenter', function() {
-    if(clickCount >= 5){
+    if(clickCount >= 6){
       oldText2 = "YES";
       defaultHeart = heart;
     }
@@ -127,7 +127,7 @@
    oldText2 = btnNo.text();
    btnNo.text(defaultHeart);
   }).on("mouseleave", function() {
-    if(clickCount >= 5){
+    if(clickCount >= 6){
       oldText2 = "YES";
       btnNo = $(btnNo);
     }
