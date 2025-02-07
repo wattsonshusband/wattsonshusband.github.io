@@ -111,9 +111,10 @@ button:hover {
 
 .bottom-right {
  position: fixed;
- bottom: -97.5%;
- right: -97.5%;
- font-size: 18px;
+ bottom: -96.2%;
+ right: -98.2%;
+ font-size: 20px;
+ z-index: 99;
 }
 
 .gif-wrapper {
