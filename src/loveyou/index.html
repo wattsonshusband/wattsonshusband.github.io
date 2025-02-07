@@ -72,6 +72,28 @@
      }
     }, 125);
    }());
+
+   try{
+     var bodyTheme = document.getElementById('bodyMain');
+     var theme = localStorage.getItem('theme');
+     if(theme !== null){
+       bodyTheme.classList.replace('light', theme);
+ 
+       var btnText = "";
+       switch(theme){
+         case "light":{
+           btnText = "I";
+           break;
+         }
+         case "dark":{
+           btnText = "O";
+           break;
+         }
+       }
+ 
+       var btn = $('#btn999').text(btnText);
+     }
+   }catch{ console.log('your code is dogshit. ') }
   </script>
  </body>
 </html>
