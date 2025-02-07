@@ -59,12 +59,14 @@
           }
         }catch { console.log("I know, I change btnNo variable.") }
 
-        var getRandomID = Math.floor(Math.random() * dumbResponsesYes.length);
-        var getRandomResp = dumbResponsesYes[getRandomID];
-      
-        resp.text(getRandomResp + heart);
+        if(clickCount > 5){
+          var getRandomID = Math.floor(Math.random() * dumbResponsesYes.length);
+          var getRandomResp = dumbResponsesYes[getRandomID];
+        
+          resp.text(getRandomResp + heart);
 
-        setTimeout(() => { window.location.href = "./src/loveyou/" }, 1500);
+          setTimeout(() => { window.location.href = "./src/loveyou/" }, 1500);
+        }
       }
       
       if(dumbResponses.length >= 1){
