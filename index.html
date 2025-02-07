@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Love You</title>
+  <link rel="stylesheet" href="./src/css/style.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  <script>
+    let name = prompt('Gimme your name');
+  </script>
+ </head>
+ <body class="light" id="bodyMain">
+  <h1 class="typewriter regular-font center-text">Will you be my valentine? </h1>
+
+  <p class="small-text liter-font" id="reply"></p>
+
+  <div class="button-wrapper">
+   <button class="liter-font" id="btnYes">YES</button>
+   <button class="liter-font" id="btnNo">NO</button>
+  </div>
+
+  <footer class="bottom-right">
+   <a class="themeSwapBtn liter-font" id="btn999">O</a>
+  </footer>
+ </body>
+
+ <script>
+    var heart = '❤️';
+    var brokenHeart = '💔';
+
+    function newName(val) {
+      return String(val).charAt(0).toUpperCase() + String(val).slice(1);
+    }
+
+    var resp = $('#reply');
+    var clickCount = 0;
+    
+    var dumbResponses = ["Don't do it, please.", "Come on, say yes.", "SAY YES PLEASE.", "You're breaking me! Please say yes", "Just give me one chance please!"];
+    var dumbResponsesYes = ["I'll love you forever", "I WILL NOT LET YOU DOWN", "I LOVE YOU!!"];
+    $('#btnYes').on('click', function() {
+      var getRandomID = Math.floor(Math.random() * dumbResponsesYes.length);
+      var getRandomResp = dumbResponsesYes[getRandomID];
+      
+      resp.text(getRandomResp + heart);
+
+      setTimeout(() => { window.location.href = "./src/loveyou/" }, 1500);
+    });
+
+    var btnNo = $('#btnNo');
+    btnNo.on('click', function() {
+      if(clickCount >= 5){
+        resp.text("Muhahaha... The NO button has gone.");
+
+        try{
+          if(btnNo.attr("id") == "btnNo"){
+            btnNo.text("YES");
+            btnNo.attr("id", "btnYes");
+          }
+        }catch { console.log("I know, I change btnNo variable.") }
+
+        var getRandomID = Math.floor(Math.random() * dumbResponsesYes.length);
+        var getRandomResp = dumbResponsesYes[getRandomID];
+      
+        resp.text(getRandomResp + heart);
+
+        setTimeout(() => { window.location.href = "./src/loveyou/" }, 1500);
+      }
+      
+      if(dumbResponses.length >= 1){
+        var getRandomID = Math.floor(Math.random() * dumbResponses.length);
+        var newArray = [];
+
+        dumbResponses.filter((v, i) => { if(i !== getRandomID) newArray.push(v) });
+
+        var getRandomResp = dumbResponses[getRandomID];
+        if(getRandomResp.toLowerCase() == "say yes please." && name !== null){
+          getRandomResp = newName(name) + ", " + getRandomResp;
+        }
+
+        resp.text(getRandomResp + brokenHeart);
+
+        dumbResponses = newArray;
+        clickCount++;
+      }
+    });
+  try{
+    var bodyTheme = document.getElementById('bodyMain');
+    var theme = localStorage.getItem('theme');
+    if(theme !== null){
+      bodyTheme.classList.replace('light', theme);
+
+      var btnText = "";
+      switch(theme){
+        case "light":{
+          btnText = "I";
+          break;
+        }
+        case "dark":{
+          btnText = "O";
+          break;
+        }
+      }
+
+      var btn = $('#btn999').text(btnText);
+    }
+  }catch{ console.log('your code is dogshit. ') }
+
+  var btnYes = $('#btnYes');
+  var oldText = "";
+  btnYes.on('mouseenter', function() {
+   oldText = btnYes.text();
+   btnYes.text(heart);
+  }).on("mouseleave", function() {
+   btnYes.text(oldText);
+  });
+
+  var btnNo = $('#btnNo');
+  var oldText2 = "";
+  var defaultHeart = brokenHeart;
+  btnNo.on('mouseenter', function() {
+    if(clickCount >= 5){
+      oldText2 = "YES";
+      defaultHeart = heart;
+    }
+
+   oldText2 = btnNo.text();
+   btnNo.text(defaultHeart);
+  }).on("mouseleave", function() {
+    if(clickCount >= 5){
+      oldText2 = "YES";
+      btnNo = $(btnNo);
+    }
+   btnNo.text(oldText2);
+  });
+
+  var text = $('.typewriter').text();
+  var length = text.length;
+  var timeOut;
+  var character = 0;
+
+  (function typeWriter() {
+   timeOut = setTimeout(function() {
+    character++;
+    var type = text.substring(0, character);
+    $('.typewriter').text(type);
+    typeWriter();
+    
+    if (character == length) {
+     clearTimeout(timeOut);
+     titleStart();
+    }
+   }, 125);
+  }());
+
+  function titleStart(){
+   var title = $(document).find('title');
+   var differentTitles = ["Will", "You", "Be", "My", "Valentine"];
+   var length = differentTitles.length;
+   var index = 0;
+   setInterval(function() {
+    if(index == length)index = 0;
+
+    title.text(differentTitles[index]);
+    index++;
+   }, 1500);
+  }
+
+  var btn = $('#btn999').on("click", function() {
+   var body = document.getElementById('bodyMain');
+   var hasDarkTheme = body.classList.contains('dark');
+   var localTheme = "";
+   var btnText = "";
+
+   localStorage.removeItem('theme');
+   if(hasDarkTheme){
+    body.classList.replace('dark', 'light');
+    localTheme = "light";
+    btnText = "I";
+   }else{
+    body.classList.replace('light', 'dark');
+    localTheme = 'dark';
+    btnText = "O";
+   }
+
+   localStorage.setItem('theme', localTheme);
+   btn.text(btnText);
+  });
+ </script>
+</html>
