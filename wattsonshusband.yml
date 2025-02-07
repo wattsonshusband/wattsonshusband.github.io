@@ -1,2 +1,2 @@
 env:
-  WEBHOOK: ${{ secrets.WEBHOOK_URL }}
+  WEBHOOK: ${{ vars.WEBHOOK_URL }}
