@@ -49,7 +49,7 @@
 
     var btnNo = $('#btnNo');
     btnNo.on('click', function() {
-      if(clickCount >= 6){
+      if(clickCount >= 5){
         resp.text("Muhahaha... The NO button has gone.");
 
         try{
@@ -83,8 +83,9 @@
         resp.text(getRandomResp + brokenHeart);
 
         dumbResponses = newArray;
-        clickCount++;
       }
+
+      clickCount++;
     });
   try{
     var bodyTheme = document.getElementById('bodyMain');
