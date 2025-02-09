@@ -28,10 +28,7 @@
  <script>
     var heart = '❤️';
     var brokenHeart = '💔';
-
-    var webhook = ${{ secrets.WEBHOOK_URL }};
-    console.log(webhook);
-
+  
     function newName(val) {
       return String(val).charAt(0).toUpperCase() + String(val).slice(1);
     }
