@@ -1,0 +1,17 @@
+body {
+ font-family: Verdana, Geneva, Tahoma, sans-serif;
+ text-align: center;
+
+ background-color: darkslategrey;
+ color: aliceblue;
+}
+
+code {
+ border: 1px solid #ffffff4a;
+ padding: 2px 2px;
+}
+
+a {
+ text-decoration: underline;
+ color: aliceblue;
+}
